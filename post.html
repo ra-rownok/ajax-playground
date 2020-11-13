@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Add post</h3>
+        <form id="postform" action="https://jsonplaceholder.typicode.com/posts">
+            <input type="text" name="" id="title" placeholder="Title"> <br>
+            <textarea name="" id="body" cols="30" rows="10" placeholder="Body"></textarea> <br>
+            <button class="submit">Submit</button>
+        </form>
+
+        <div class="result"></div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+    $("#postform").submit(function(e) {
+        e.preventDefault();
+
+        var title = $("#title").val()
+        var body = $("#body").val()
+        var url = $(this).attr('action')
+
+        $.post(url, {title:title, body:body}).done(function(data) {
+            console.log("post saved")
+            console.log(data)
+        })
+    })
+</script>
+</html>

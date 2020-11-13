@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax</title>
+</head>
+<body>
+    <h1>Ajax playground</h1>
+    <div class="container">
+        <div class="result">
+
+        </div>
+        <ul class="users"></ul>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+    $ (function(){
+        // $('.result').load('test.html', function( responseTxt, statusTxt, xhr) {
+        //     if (statusTxt == 'success') {
+        //         alert('It went fine')
+        //     } else if (statusTxt == 'error') {
+        //         alert('Error: '+xhr.statusText);
+        //     }
+        // });
+
+        $.get("test.html", function(data) {
+            $(".result").html(data);
+        })
+
+        $.getJSON("users.json",function(data) {
+            $.each(data, function( i, user) {
+                $(".users").append("<li>"+user.firstname+"</li>")
+            });
+        })
+    })
+</script>
+</html>
